@@ -6,8 +6,38 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		FB4E75B82F7847F700191E0C /* metafit Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = FB4E75B72F7847F700191E0C /* metafit Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FB4E75B92F7847F700191E0C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FB4E758F2F7846F500191E0C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FB4E75B62F7847F700191E0C;
+			remoteInfo = "metafit Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FB4E75C52F7847F800191E0C /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				FB4E75B82F7847F700191E0C /* metafit Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		FB4E75972F7846F500191E0C /* MetaFit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetaFit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB4E75AB2F7847F500191E0C /* metafit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = metafit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB4E75B72F7847F700191E0C /* metafit Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "metafit Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -16,10 +46,39 @@
 			path = MetaFit;
 			sourceTree = "<group>";
 		};
+		FB4E75AC2F7847F500191E0C /* metafit */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = metafit;
+			sourceTree = "<group>";
+		};
+		FB4E75BB2F7847F700191E0C /* metafit Watch App */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "metafit Watch App";
+			sourceTree = "<group>";
+		};
+		FB4E75D12F784900001E0A1 /* Shared */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Shared;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		FB4E75942F7846F500191E0C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB4E75A82F7847F500191E0C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB4E75B42F7847F700191E0C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,6 +92,9 @@
 			isa = PBXGroup;
 			children = (
 				FB4E75992F7846F500191E0C /* MetaFit */,
+				FB4E75AC2F7847F500191E0C /* metafit */,
+				FB4E75BB2F7847F700191E0C /* metafit Watch App */,
+				FB4E75D12F784900001E0A1 /* Shared */,
 				FB4E75982F7846F500191E0C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +103,8 @@
 			isa = PBXGroup;
 			children = (
 				FB4E75972F7846F500191E0C /* MetaFit.app */,
+				FB4E75AB2F7847F500191E0C /* metafit.app */,
+				FB4E75B72F7847F700191E0C /* metafit Watch App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,6 +134,56 @@
 			productReference = FB4E75972F7846F500191E0C /* MetaFit.app */;
 			productType = "com.apple.product-type.application";
 		};
+		FB4E75AA2F7847F500191E0C /* metafit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FB4E75C62F7847F800191E0C /* Build configuration list for PBXNativeTarget "metafit" */;
+			buildPhases = (
+				FB4E75A72F7847F500191E0C /* Sources */,
+				FB4E75A82F7847F500191E0C /* Frameworks */,
+				FB4E75A92F7847F500191E0C /* Resources */,
+				FB4E75C52F7847F800191E0C /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FB4E75BA2F7847F700191E0C /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				FB4E75AC2F7847F500191E0C /* metafit */,
+				FB4E75D12F784900001E0A1 /* Shared */,
+			);
+			name = metafit;
+			packageProductDependencies = (
+				FB4E75D32F784900001E0A3 /* MWDATCore */,
+				FB4E75D42F784900001E0A4 /* MWDATCamera */,
+			);
+			productName = metafit;
+			productReference = FB4E75AB2F7847F500191E0C /* metafit.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FB4E75B62F7847F700191E0C /* metafit Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FB4E75C22F7847F800191E0C /* Build configuration list for PBXNativeTarget "metafit Watch App" */;
+			buildPhases = (
+				FB4E75B32F7847F700191E0C /* Sources */,
+				FB4E75B42F7847F700191E0C /* Frameworks */,
+				FB4E75B52F7847F700191E0C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				FB4E75BB2F7847F700191E0C /* metafit Watch App */,
+				FB4E75D12F784900001E0A1 /* Shared */,
+			);
+			name = "metafit Watch App";
+			packageProductDependencies = (
+			);
+			productName = "metafit Watch App";
+			productReference = FB4E75B72F7847F700191E0C /* metafit Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -83,6 +197,12 @@
 					FB4E75962F7846F500191E0C = {
 						CreatedOnToolsVersion = 26.3;
 					};
+					FB4E75AA2F7847F500191E0C = {
+						CreatedOnToolsVersion = 26.3;
+					};
+					FB4E75B62F7847F700191E0C = {
+						CreatedOnToolsVersion = 26.3;
+					};
 				};
 			};
 			buildConfigurationList = FB4E75922F7846F500191E0C /* Build configuration list for PBXProject "MetaFit" */;
@@ -94,18 +214,37 @@
 			);
 			mainGroup = FB4E758E2F7846F500191E0C;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				FB4E75D22F784900001E0A2 /* XCRemoteSwiftPackageReference "meta-wearables-dat-ios" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FB4E75982F7846F500191E0C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				FB4E75962F7846F500191E0C /* MetaFit */,
+				FB4E75AA2F7847F500191E0C /* metafit */,
+				FB4E75B62F7847F700191E0C /* metafit Watch App */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		FB4E75952F7846F500191E0C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB4E75A92F7847F500191E0C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB4E75B52F7847F700191E0C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +261,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FB4E75A72F7847F500191E0C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB4E75B32F7847F700191E0C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FB4E75BA2F7847F700191E0C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FB4E75B62F7847F700191E0C /* metafit Watch App */;
+			targetProxy = FB4E75B92F7847F700191E0C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		FB4E75A22F7846F600191E0C /* Debug */ = {
@@ -310,6 +471,140 @@
 			};
 			name = Release;
 		};
+		FB4E75C32F7847F800191E0C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "metafit Watch App/MetaFitWatch.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 65C72W6D56;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = MetaFit;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = munnylab.metafit;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = munnylab.metafit.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 26.2;
+			};
+			name = Debug;
+		};
+		FB4E75C42F7847F800191E0C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "metafit Watch App/MetaFitWatch.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 65C72W6D56;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = MetaFit;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = munnylab.metafit;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = munnylab.metafit.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 26.2;
+			};
+			name = Release;
+		};
+		FB4E75C72F7847F800191E0C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 65C72W6D56;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = MetaFit;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = munnylab.metafit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FB4E75C82F7847F800191E0C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 65C72W6D56;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = MetaFit;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = munnylab.metafit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -331,7 +626,49 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		FB4E75C22F7847F800191E0C /* Build configuration list for PBXNativeTarget "metafit Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FB4E75C32F7847F800191E0C /* Debug */,
+				FB4E75C42F7847F800191E0C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FB4E75C62F7847F800191E0C /* Build configuration list for PBXNativeTarget "metafit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FB4E75C72F7847F800191E0C /* Debug */,
+				FB4E75C82F7847F800191E0C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FB4E75D22F784900001E0A2 /* XCRemoteSwiftPackageReference "meta-wearables-dat-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/meta-wearables-dat-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FB4E75D32F784900001E0A3 /* MWDATCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB4E75D22F784900001E0A2 /* XCRemoteSwiftPackageReference "meta-wearables-dat-ios" */;
+			productName = MWDATCore;
+		};
+		FB4E75D42F784900001E0A4 /* MWDATCamera */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB4E75D22F784900001E0A2 /* XCRemoteSwiftPackageReference "meta-wearables-dat-ios" */;
+			productName = MWDATCamera;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FB4E758F2F7846F500191E0C /* Project object */;
 }

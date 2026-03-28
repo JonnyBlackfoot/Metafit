@@ -1,23 +1,18 @@
-//
-//  MetaFitApp.swift
-//  MetaFit
-//
-//  Created by Chris Munn on 3/28/26.
-//
-
 import SwiftUI
 import SwiftData
 
 @main
-struct MetaFitApp: App {
+struct MetaFitWatchApp: App {
+    @State private var connectivityManager = WatchConnectivityManager.shared
+
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            WorkoutRecord.self,
+            GlassesPhoto.self
         ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
+        let config = ModelConfiguration(isStoredInMemoryOnly: false)
         do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+            return try ModelContainer(for: schema, configurations: [config])
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
         }
@@ -25,7 +20,7 @@ struct MetaFitApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            DashboardView()
         }
         .modelContainer(sharedModelContainer)
     }
