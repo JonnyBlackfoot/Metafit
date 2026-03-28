@@ -26,7 +26,7 @@ class HealthKitManager: ObservableObject {
             HKObjectType.workoutType()
         ]
 
-        healthStore.requestAuthorization(toShare: typesToShare, toRead: typesToRead) { [weak self] success, _ in
+        healthStore.requestAuthorization(toShare: typesToShare, read: typesToRead) { [weak self] success, _ in
             DispatchQueue.main.async {
                 self?.isAuthorized = success
             }
