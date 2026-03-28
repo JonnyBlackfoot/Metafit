@@ -11,7 +11,7 @@ enum LlamaServiceError: LocalizedError {
 
     var errorDescription: String? {
         switch self {
-        case .noAPIKey: return "No API key configured. Add your Llama API key in Settings."
+        case .noAPIKey: return "No API key configured. Add your AI API key in Settings."
         case .offline: return "No network connection. Connect to WiFi or cellular to generate workouts."
         case .invalidResponse: return "Received an invalid response from the AI service."
         case .httpError(let code): return "Server error (HTTP \(code)). Please try again."
@@ -42,7 +42,27 @@ final class LlamaService: ObservableObject {
 
     private var baseURL: String {
         UserDefaults.standard.string(forKey: "llama_base_url")
-            ?? "https://api.together.xyz/v1"
+            ?? "https://api.openai.com/v1"
+    }
+
+    private var isOpenAI: Bool {
+        baseURL.lowercased().contains("api.openai.com")
+    }
+
+    private var workoutModel: String {
+        isOpenAI ? "gpt-4o-mini" : "meta-llama/Llama-3.2-8B-Instruct-Turbo"
+    }
+
+    private var captionModel: String {
+        isOpenAI ? "gpt-4o-mini" : "meta-llama/Llama-4-Scout-17B-16E-Instruct"
+    }
+
+    private var isSimulator: Bool {
+#if targetEnvironment(simulator)
+        return true
+#else
+        return false
+#endif
     }
 
     // MARK: - Workout generation
@@ -53,7 +73,17 @@ final class LlamaService: ObservableObject {
         durationMinutes: Int,
         difficulty: Difficulty
     ) async throws -> GeneratedWorkout {
-        guard !apiKey.isEmpty else { throw LlamaServiceError.noAPIKey }
+        guard !apiKey.isEmpty else {
+            if isSimulator {
+                return mockWorkout(
+                    muscles: muscles,
+                    equipment: equipment,
+                    durationMinutes: durationMinutes,
+                    difficulty: difficulty
+                )
+            }
+            throw LlamaServiceError.noAPIKey
+        }
 
         isGenerating = true
         defer { isGenerating = false }
@@ -68,7 +98,7 @@ final class LlamaService: ObservableObject {
         let responseText = try await callLlamaAPI(
             systemPrompt: workoutSystemPrompt,
             userPrompt: prompt,
-            model: "meta-llama/Llama-3.2-8B-Instruct-Turbo"
+            model: workoutModel
         )
 
         return try parseWorkoutResponse(responseText, muscles: muscles, difficulty: difficulty)
@@ -77,13 +107,18 @@ final class LlamaService: ObservableObject {
     // MARK: - Image captioning (multimodal)
 
     func captionImage(_ imageData: Data) async throws -> String {
-        guard !apiKey.isEmpty else { throw LlamaServiceError.noAPIKey }
+        guard !apiKey.isEmpty else {
+            if isSimulator {
+                return "Simulator mode caption: fitness photo preview."
+            }
+            throw LlamaServiceError.noAPIKey
+        }
 
         let base64 = imageData.base64EncodedString()
         let responseText = try await callLlamaAPI(
             systemPrompt: "You are a concise image captioner. Describe what you see in 1-2 sentences, focusing on gym or fitness context if applicable.",
             userPrompt: "Describe this image briefly.",
-            model: "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+            model: captionModel,
             imageBase64: base64
         )
 
@@ -153,6 +188,68 @@ final class LlamaService: ObservableObject {
         }
 
         return content
+    }
+
+    // MARK: - Simulator fallback
+
+    private func mockWorkout(
+        muscles: [MuscleGroup],
+        equipment: [Equipment],
+        durationMinutes: Int,
+        difficulty: Difficulty
+    ) -> GeneratedWorkout {
+        let targetMuscles = muscles.isEmpty ? [.fullBody] : muscles
+        let preferredEquipment = equipment.first ?? .bodyweight
+        let setTemplate: [ExerciseSet]
+
+        switch difficulty {
+        case .beginner:
+            setTemplate = [
+                ExerciseSet(reps: 12, weight: nil),
+                ExerciseSet(reps: 12, weight: nil),
+                ExerciseSet(reps: 10, weight: nil)
+            ]
+        case .intermediate:
+            setTemplate = [
+                ExerciseSet(reps: 10, weight: nil),
+                ExerciseSet(reps: 10, weight: nil),
+                ExerciseSet(reps: 8, weight: nil),
+                ExerciseSet(reps: 8, weight: nil)
+            ]
+        case .advanced:
+            setTemplate = [
+                ExerciseSet(reps: 8, weight: nil),
+                ExerciseSet(reps: 8, weight: nil),
+                ExerciseSet(reps: 6, weight: nil),
+                ExerciseSet(reps: 6, weight: nil),
+                ExerciseSet(reps: 6, weight: nil)
+            ]
+        }
+
+        let exerciseTemplates: [(String, MuscleGroup)] = [
+            ("Compound Lift", targetMuscles[0]),
+            ("Accessory Movement", targetMuscles.count > 1 ? targetMuscles[1] : targetMuscles[0]),
+            ("Finisher", targetMuscles.last ?? targetMuscles[0])
+        ]
+
+        let exercises = exerciseTemplates.map { name, muscle in
+            Exercise(
+                name: "\(muscle.displayName) \(name)",
+                muscleGroup: muscle,
+                equipment: preferredEquipment,
+                sets: setTemplate,
+                restSeconds: difficulty == .advanced ? 60 : 90,
+                notes: "Simulator fallback workout. Add an API key in Settings for AI-generated plans."
+            )
+        }
+
+        return GeneratedWorkout(
+            name: "Simulator \(difficulty.displayName) Workout",
+            exercises: exercises,
+            estimatedMinutes: max(15, durationMinutes),
+            difficulty: difficulty,
+            targetMuscles: targetMuscles
+        )
     }
 
     // MARK: - Prompt engineering
