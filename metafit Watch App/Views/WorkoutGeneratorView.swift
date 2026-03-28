@@ -3,17 +3,26 @@ import SwiftUI
 struct WorkoutGeneratorView: View {
     @StateObject private var viewModel = WorkoutViewModel()
     @State private var showGenerated = false
+    @State private var isExpanded = false
 
     var body: some View {
         ScrollView {
-            VStack(spacing: 12) {
-                muscleGroupSection
-                equipmentSection
-                durationSection
-                difficultySection
-                generateButton
+            VStack(spacing: 10) {
+                builderToggleButton
+
+                if isExpanded {
+                    VStack(spacing: 12) {
+                        muscleGroupSection
+                        equipmentSection
+                        durationSection
+                        difficultySection
+                        generateButton
+                    }
+                    .transition(.move(edge: .top).combined(with: .opacity))
+                }
             }
             .padding(.horizontal, 4)
+            .animation(.easeInOut(duration: 0.2), value: isExpanded)
         }
         .navigationTitle("AI Workout")
         .sheet(isPresented: $showGenerated) {
@@ -32,6 +41,29 @@ struct WorkoutGeneratorView: View {
         } message: {
             Text(viewModel.errorMessage ?? "")
         }
+    }
+
+    private var builderToggleButton: some View {
+        Button {
+            withAnimation {
+                isExpanded.toggle()
+            }
+        } label: {
+            HStack(spacing: 8) {
+                Image(systemName: "sparkles")
+                    .font(.caption2)
+                Text(isExpanded ? "Hide AI Builder" : "AI Builder")
+                    .font(.caption.weight(.semibold))
+                Spacer()
+                Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
+                    .font(.caption2)
+            }
+            .padding(.horizontal, 10)
+            .padding(.vertical, 8)
+            .background(Color.green.opacity(0.15))
+            .clipShape(Capsule())
+        }
+        .buttonStyle(.plain)
     }
 
     // MARK: - Sections
@@ -107,8 +139,12 @@ struct WorkoutGeneratorView: View {
 
     private var generateButton: some View {
         Button {
-            Task { await viewModel.generateWorkout() }
-            showGenerated = true
+            Task {
+                await viewModel.generateWorkout()
+                if viewModel.generatedWorkout != nil {
+                    showGenerated = true
+                }
+            }
         } label: {
             HStack {
                 if viewModel.isGenerating {

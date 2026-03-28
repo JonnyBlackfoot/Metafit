@@ -3,8 +3,6 @@ import SwiftData
 
 @main
 struct MetaFitWatchApp: App {
-    @State private var connectivityManager = WatchConnectivityManager.shared
-
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             WorkoutRecord.self,

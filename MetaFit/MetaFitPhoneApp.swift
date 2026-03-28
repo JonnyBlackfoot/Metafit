@@ -2,8 +2,8 @@ import SwiftUI
 
 @main
 struct MetaFitPhoneApp: App {
-    @State private var connectivityManager = WatchConnectivityManager.shared
-    @State private var glassesBridge = GlassesBridgeService.shared
+    private let connectivityManager = WatchConnectivityManager.shared
+    private let glassesBridge = GlassesBridgeService.shared
 
     var body: some Scene {
         WindowGroup {

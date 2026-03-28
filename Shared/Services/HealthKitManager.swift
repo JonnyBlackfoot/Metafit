@@ -26,6 +26,12 @@ final class HealthKitManager: NSObject, ObservableObject {
 
     func requestAuthorization() async throws {
         guard HKHealthStore.isHealthDataAvailable() else { return }
+        // If these keys are missing in the effective Info.plist, HealthKit throws an Objective-C
+        // exception that bypasses Swift error handling. Bail out safely instead.
+        guard Bundle.main.object(forInfoDictionaryKey: "NSHealthShareUsageDescription") != nil,
+              Bundle.main.object(forInfoDictionaryKey: "NSHealthUpdateUsageDescription") != nil else {
+            return
+        }
 
         let typesToShare: Set<HKSampleType> = [HKObjectType.workoutType()]
 
