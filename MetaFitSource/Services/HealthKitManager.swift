@@ -1,4 +1,5 @@
 import Foundation
+import Combine
 import HealthKit
 
 class HealthKitManager: ObservableObject {
@@ -16,13 +17,19 @@ class HealthKitManager: ObservableObject {
     private init() {}
 
     func requestAuthorization() {
+        guard HKHealthStore.isHealthDataAvailable(),
+              let heartRateType = HKQuantityType.quantityType(forIdentifier: .heartRate),
+              let energyType = HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned) else {
+            return
+        }
+
         let typesToShare: Set<HKSampleType> = [
             HKObjectType.workoutType()
         ]
 
         let typesToRead: Set<HKObjectType> = [
-            HKObjectType.quantityType(forIdentifier: .heartRate)!,
-            HKObjectType.quantityType(forIdentifier: .activeEnergyBurned)!,
+            heartRateType,
+            energyType,
             HKObjectType.workoutType()
         ]
 
@@ -34,6 +41,8 @@ class HealthKitManager: ObservableObject {
     }
 
     func startWorkoutSession() {
+        guard HKHealthStore.isHealthDataAvailable() else { return }
+
         let configuration = HKWorkoutConfiguration()
         configuration.activityType = .traditionalStrengthTraining
         configuration.locationType = .indoor
