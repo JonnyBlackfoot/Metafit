@@ -1,4 +1,5 @@
 import SwiftUI
+import WatchKit
 
 struct RestTimerView: View {
     @Environment(\.dismiss) private var dismiss
