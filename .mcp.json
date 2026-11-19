@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "bible-reading": {
+      "command": "python3",
+      "args": ["/home/user/Metafit/bible-mcp/server.py"],
+      "description": "Bible reading assistant — verse lookup, life-topic scripture search, daily reading plans, and verse of the day."
+    }
+  }
+}
